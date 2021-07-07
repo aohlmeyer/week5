@@ -1,0 +1,54 @@
+1.)
+
+#!/bin/bash
+
+# Write a script that uses a for loop to read a series of integers from the command line$
+# (a) count the number of values less than 10 and (b) add all the numbers together. Bot$
+
+n=$i
+sum=0
+for i in $@
+do
+       if [ $i -lt 10 ]
+           then count=$(($count+1))
+       fi
+       sum=$((sum+$i))
+done
+echo "The sum of the numbers is: " $sum
+echo "The amount of numbers less than 10 is: " $count
+
+# DB: Good!
+
+
+2.)
+
+#!/bin/bash
+
+# Write a script that does the same thing as (1), but reads the values from a file.
+
+echo "Input name of file you wish to analyze:"
+
+read file
+
+echo "Numbers less than or equal to 10 in this file are:"
+awk '$1<10{c++} END{print c+0}' $file
+echo "The sum of the numbers in this file is:"
+awk '{sum+=$1} END {print sum}' $file
+
+# DB: Good! Where'd you find this awk syntax?
+
+
+3.) 
+
+#!/bin/bash
+
+#Write a script that reads in two columns of numbers from a file.
+# The columns are separated by a tab. Have it output any lines where the first column c$
+# HINT: there are multiple ways to do this.
+
+echo "Enter name of file that has two tab delimited columns:"
+       read file
+cat $file | awk '{ if(($1>10) && ($2<10)){print}}'
+exit
+
+# DB: Also good!
